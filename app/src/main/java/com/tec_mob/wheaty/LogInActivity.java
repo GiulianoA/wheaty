@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class LogInActivity extends AppCompatActivity {
@@ -33,6 +34,7 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(LogInActivity.this, MainActivity.class);
                 startActivity(i);
+                Toast.makeText(getApplicationContext(), "Welcome to Wheaty!", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
