@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/btnNavFragTemp"
+        android:icon="@drawable/temperatura"
+        android:title="@string/temp"/>
+    <item android:id="@+id/btnNavFragForec"
+        android:icon="@drawable/pronostico"
+        android:title="@string/forec"/>
+</menu>
