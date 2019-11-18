@@ -1,4 +1,4 @@
-package com.tec_mob.wheaty;
+package com.tec_mob.wheaty.Network;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

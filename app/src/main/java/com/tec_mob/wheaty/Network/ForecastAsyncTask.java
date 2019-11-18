@@ -1,9 +1,10 @@
-package com.tec_mob.wheaty;
+package com.tec_mob.wheaty.Network;
 
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;

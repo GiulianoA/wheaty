@@ -9,53 +9,60 @@
     android:orientation="vertical"
     android:background="@drawable/gradient_background">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:src="@drawable/ic_map" />
+
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="500dp"
+            android:layout_height="500dp"
+            android:layout_marginTop="-50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            app:lottie_fileName="world-locations.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true" />
+
         <TextView
-            android:layout_width="50dp"
+            android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="400dp"
             android:layout_marginLeft="30dp"
             android:textSize="25dp"
             android:textStyle="bold"
-            android:text="Lat:"
+            android:text="Latitude:"
             android:textColor="#FFF"/>
         <TextView
             android:id="@+id/lat"
             android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginLeft="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="180dp"
             android:textSize="25dp"
             android:textStyle="bold"
             android:text="-"
             android:textColor="#FFF"/>
 
         <TextView
-            android:layout_width="50dp"
+            android:layout_width="130dp"
             android:layout_height="50dp"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="480dp"
             android:layout_marginLeft="30dp"
             android:textSize="25dp"
             android:textStyle="bold"
-            android:text="Lon:"
+            android:text="Longitude:"
             android:textColor="#FFF"/>
         <TextView
             android:id="@+id/lon"
             android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="110dp"
-            android:layout_marginLeft="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="480dp"
+            android:layout_marginLeft="180dp"
             android:textSize="25dp"
             android:textStyle="bold"
             android:text="-"

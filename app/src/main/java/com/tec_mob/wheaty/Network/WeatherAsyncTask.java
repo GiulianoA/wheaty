@@ -1,4 +1,4 @@
-package com.tec_mob.wheaty;
+package com.tec_mob.wheaty.Network;
 
 import android.os.AsyncTask;
 import android.view.View;

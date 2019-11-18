@@ -1,10 +1,12 @@
-package com.tec_mob.wheaty;
-import java.io.InputStream;
-import java.util.AbstractSet;
+package com.tec_mob.wheaty.Network;
 
 import com.google.gson.Gson;
+import com.tec_mob.wheaty.Network.Networking;
+import com.tec_mob.wheaty.Network.WeatherDTO;
 
-public class Forecast {
+import java.io.InputStream;
+
+public class Weather {
     private String lat;
     private String lon;
     private String units;
@@ -12,28 +14,28 @@ public class Forecast {
     private String apiKey;
     private String requestMethod;
 
-    public Forecast() {
-        lat = "-31.41";
-        lon = "-64.18";
-        units = "metric";
-        baseApi = "https://api.openweathermap.org/data/2.5/forecast";
-        apiKey = "2ec832996bd0036fa29429b972f694b6";
-        requestMethod = "GET";
-    }
-
-    public Forecast(String lat, String lon) {
-        this.lat = lat;
-        this.lon = lon;
+    public Weather() {
+        this.lat = "-31.41";
+        this.lon = "-64.18";
         this.units = "metric";
-        this.baseApi = "https://api.openweathermap.org/data/2.5/forecast";
+        this.baseApi = "https://api.openweathermap.org/data/2.5/weather";
         this.apiKey = "2ec832996bd0036fa29429b972f694b6";
         this.requestMethod = "GET";
     }
 
-    public ForecastDTO getData(){
+    public Weather(String lat, String lon) {
+        this.lat = lat;
+        this.lon = lon;
+        this.units = "metric";
+        this.baseApi = "https://api.openweathermap.org/data/2.5/weather";
+        this.apiKey = "2ec832996bd0036fa29429b972f694b6";
+        this.requestMethod = "GET";
+    }
+
+    public WeatherDTO getData(){
         InputStream inputStream = Networking.httpGetStream(this.getUrl(), this.requestMethod);
         String inputStreamString = Networking.convertStreamToString(inputStream);
-        return new Gson().fromJson(inputStreamString, ForecastDTO.class);
+        return new Gson().fromJson(inputStreamString, WeatherDTO.class);
     }
 
     private String getUrl(){

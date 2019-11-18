@@ -1,17 +1,22 @@
 package com.tec_mob.wheaty;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,6 +26,8 @@ import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -127,12 +134,69 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void GPSButton(){
+        FloatingActionButton floatingActionButton = findViewById(R.id.gps);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                TextView lonT = findViewById(R.id.lon);
+                TextView latT = findViewById(R.id.lat);
+
+                GPS g = new GPS(getApplicationContext());
+                Location l = g.getLocation();
+                if(l != null){
+                    double lat = l.getLatitude();
+                    double lon = l.getLongitude();
+
+                    lonT.setText(String.valueOf(lon));
+                    latT.setText(String.valueOf(lat));
+
+                    //Toast.makeText(getApplicationContext(),"LAT: "+lat+"\n LON: "+lon, Toast.LENGTH_LONG).show();
+                }
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage(R.string.dialog_message_gps)
+                        .setPositiveButton(R.string.dialog_positive_gps, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setTitle("GPS")
+                        .create();
+                builder.show();*/
+            }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    PackageManager.GET_PERMISSIONS);
+
+        }
+
+        TextView lonT = findViewById(R.id.lon);
+        TextView latT = findViewById(R.id.lat);
+
+        GPS g = new GPS(getApplicationContext());
+        Location l = g.getLocation();
+        if(l != null){
+            double lat = l.getLatitude();
+            double lon = l.getLongitude();
+
+            lonT.setText(String.valueOf(lon));
+            latT.setText(String.valueOf(lat));
+        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -165,23 +229,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            }
        });
 
-        FloatingActionButton floatingActionButton = findViewById(R.id.gps);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage(R.string.dialog_message_gps)
-                        .setPositiveButton(R.string.dialog_positive_gps, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        })
-                        .setTitle("GPS")
-                        .create();
-                builder.show();
-            }
-        });
+        GPSButton();
 
     }
 

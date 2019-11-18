@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.tec_mob.wheaty.Network.WeatherAsyncTask;
 
 import java.util.LinkedHashMap;
 
