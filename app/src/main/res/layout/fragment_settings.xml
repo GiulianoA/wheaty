@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TempFrag"
+    android:background="@drawable/gradient_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="310dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/password_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/password_icon"
+            />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="290dp"
+            android:layout_height="50dp"
+            android:background="@drawable/round_edit_text"
+            android:hint="@string/register_password"
+            android:inputType="textPassword"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:nextFocusDown="@id/confirm_password"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="390dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/new_password_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/password_icon"
+            />
+
+        <EditText
+            android:id="@+id/new_password"
+            android:layout_width="290dp"
+            android:layout_height="50dp"
+            android:background="@drawable/round_edit_text"
+            android:hint="New Password"
+            android:inputType="textPassword"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:nextFocusDown="@id/confirm_password"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="470dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/confirm_password_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/password_icon"
+            />
+
+        <EditText
+            android:id="@+id/confirm_password"
+            android:layout_width="290dp"
+            android:layout_height="50dp"
+            android:background="@drawable/round_edit_text"
+            android:hint="@string/register_password_confirm"
+            android:inputType="textPassword"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:nextFocusDown="@id/register"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="350dp"
+        android:layout_height="62dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="550dp"
+        android:layout_marginBottom="15dp"
+        android:text="Confirm"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:background="@drawable/round_button" />
+</FrameLayout>

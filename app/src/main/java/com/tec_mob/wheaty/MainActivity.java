@@ -1,8 +1,11 @@
 package com.tec_mob.wheaty;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -14,7 +17,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-
 import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -22,7 +24,6 @@ import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
 
     MenuView.ItemView btnFragTemp, btnFragForec;
 
@@ -32,8 +33,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
 
     public void FragTemp(){
-        fragmentManager = getSupportFragmentManager();
-
+        //ragmentManager = getSupportFragmentManager();
+        fragmentManager.popBackStack();
         TempFrag tempFrag = (TempFrag)fragmentManager.findFragmentByTag("tempFrag");
         ForecastFrag forecastFrag = (ForecastFrag)fragmentManager.findFragmentByTag("forecastFrag");
 
@@ -59,9 +60,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void FragForec(){
-        fragmentManager = getSupportFragmentManager();
 
+
+    public void FragForec(){
+        //fragmentManager = getSupportFragmentManager();
+        fragmentManager.popBackStack();
         ForecastFrag forecastFrag = (ForecastFrag)fragmentManager.findFragmentByTag("forecastFrag");
         TempFrag tempFrag = (TempFrag)fragmentManager.findFragmentByTag("tempFrag");
 
@@ -84,6 +87,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
+    }
+
+    public void FragSettings(){
+
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentManager.popBackStack();
+
+        fragmentTransaction.replace(R.id.contenedor, new SettingsFrag(), "settingsFrag");
+
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
     }
 
     public void email(){
@@ -112,31 +127,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void gps(){
-        FloatingActionButton floatingActionButton = findViewById(R.id.gps);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage(R.string.dialog_message_gps)
-                        .setPositiveButton(R.string.dialog_positive_gps, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        })
-                        .setTitle("GPS")
-                        .create();
-                builder.show();
-            }
-        });
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        fragmentManager = getSupportFragmentManager();
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -170,7 +165,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            }
        });
 
-        gps();
+        FloatingActionButton floatingActionButton = findViewById(R.id.gps);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage(R.string.dialog_message_gps)
+                        .setPositiveButton(R.string.dialog_positive_gps, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setTitle("GPS")
+                        .create();
+                builder.show();
+            }
+        });
 
     }
 
@@ -194,7 +205,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.logout:
                 logout();
                 break;
+
+            case R.id.settings:
+                FragSettings();
+                break;
         }
+
+        drawer.closeDrawer(GravityCompat.START);
 
         return true;
     }
