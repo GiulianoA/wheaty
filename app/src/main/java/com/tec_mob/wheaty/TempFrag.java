@@ -1,5 +1,6 @@
 package com.tec_mob.wheaty;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -7,10 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.airbnb.lottie.LottieAnimationView;
 import com.tec_mob.wheaty.Network.WeatherAsyncTask;
-
 import java.util.LinkedHashMap;
 
 
@@ -59,7 +58,15 @@ public class TempFrag extends Fragment {
 
     public void executeAsyncTask(){
         WeatherAsyncTask asyncTask = new WeatherAsyncTask(viewMap);
-        //asyncTask.chageCoord(lat, lon);
+
+        GPS g = new GPS(getActivity().getApplicationContext());
+        Location l = g.getLocation();
+        if(l != null){
+            double latitude = l.getLatitude();
+            double longitude = l.getLongitude();
+            asyncTask.chageCoord(String.valueOf(latitude), String.valueOf(longitude));
+        }
+
         asyncTask.execute();
     }
 

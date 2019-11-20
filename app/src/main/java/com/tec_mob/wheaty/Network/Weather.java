@@ -1,9 +1,6 @@
 package com.tec_mob.wheaty.Network;
 
 import com.google.gson.Gson;
-import com.tec_mob.wheaty.Network.Networking;
-import com.tec_mob.wheaty.Network.WeatherDTO;
-
 import java.io.InputStream;
 
 public class Weather {

@@ -1,14 +1,11 @@
 package com.tec_mob.wheaty;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -27,7 +24,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -183,19 +179,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     PackageManager.GET_PERMISSIONS);
 
-        }
-
-        TextView lonT = findViewById(R.id.lon);
-        TextView latT = findViewById(R.id.lat);
-
-        GPS g = new GPS(getApplicationContext());
-        Location l = g.getLocation();
-        if(l != null){
-            double lat = l.getLatitude();
-            double lon = l.getLongitude();
-
-            lonT.setText(String.valueOf(lon));
-            latT.setText(String.valueOf(lat));
         }
 
         Toolbar toolbar = findViewById(R.id.toolbar);

@@ -1,8 +1,5 @@
 package com.tec_mob.wheaty.Network;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
