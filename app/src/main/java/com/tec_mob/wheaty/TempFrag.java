@@ -16,6 +16,7 @@ import java.util.LinkedHashMap;
 
 public class TempFrag extends Fragment {
 
+
     LinkedHashMap<String, View> viewMap;
 
     @Override
@@ -31,6 +32,7 @@ public class TempFrag extends Fragment {
         TextView wind = (TextView) root.findViewById(R.id.wind);
         LottieAnimationView animationView = (LottieAnimationView) root.findViewById(R.id.animation_view);
 
+        // Mapa de views
         viewMap = new LinkedHashMap<>();
         viewMap.put("main.temp", temperature);
         viewMap.put("name", city);

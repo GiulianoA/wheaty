@@ -77,6 +77,7 @@ public class WeatherDTO {
         return getRecursiveElement(this, keyList);
     }
 
+    // Implementacion resursiva del getter generico, para admitir anidamiento
     private static Object getRecursiveElement(Object obj, ArrayList<String> keyList){
         if(keyList.size() <= 1){
             return getSingleElement(obj, keyList.get(0));
@@ -86,7 +87,7 @@ public class WeatherDTO {
             return getRecursiveElement(temp, keyList);
         }
     }
-
+    //Se le pasa en string (key) el nombre del atributo de un objeto y te devuelve su valor. (Es un getter generico)
     private static Object getSingleElement(Object obj, String key){
         try{
             return obj.getClass().getDeclaredField(key).get(obj);
