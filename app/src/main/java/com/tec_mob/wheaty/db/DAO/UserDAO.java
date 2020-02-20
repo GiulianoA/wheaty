@@ -27,7 +27,7 @@ public interface UserDAO {
     public void setNotificaciones(Boolean notificaciones, String email);
 
     @Query("update users set hora = :hora, minutos = :minutos where user_email == :email")
-    public void setTiempo(int hora, int minutos, String email);
+    public void setTiempo(String hora, String minutos, String email);
 
     @Query("select * from users where remember_me == 1")
     public  List<User> getSessionUser();
@@ -37,6 +37,9 @@ public interface UserDAO {
 
     @Query("update users set current_user = 1 where user_email == :email")
     public void setCurrentUser(String email);
+
+    @Query("update users set user_password = :password where user_email == :email")
+    public void changePassword(String email, String password);
 
     @Query("update users set remember_me = 0, current_user = 0")
     public void logOut();

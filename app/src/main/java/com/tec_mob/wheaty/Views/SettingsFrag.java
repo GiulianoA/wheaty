@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -107,6 +108,9 @@ public class SettingsFrag extends Fragment {
                         if (selectedHour < 10) finalHour = "0" + selectedHour;
                         if (selectedMinute < 10) finalMinute = "0" + selectedMinute;
                         chooseTime.setText(finalHour + ":" + finalMinute);
+                        if(currentUser.size() > 0){
+                            wheatyDataBase.userDAO().setTiempo(finalHour, finalMinute, currentUser.get(0).getEmail());
+                        }
 
                         Calendar today = Calendar.getInstance();
 
@@ -116,15 +120,39 @@ public class SettingsFrag extends Fragment {
 
                         //Toast.makeText(view.getContext(), getString("Alarm Changed", finalHour + ":" + finalMinute), Toast.LENGTH_LONG).show();
                         setAlarm(alarmID, today.getTimeInMillis(), getContext());
+
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Choose time");
                 mTimePicker.show();
-
-
             }
         });
 
+        final EditText oldpassword = root.findViewById(R.id.password);
+        final EditText newpassword = root.findViewById(R.id.new_password);
+        final EditText confirmpassword = root.findViewById(R.id.confirm_password);
+        Button confirm = root.findViewById(R.id.confirm_new_password);
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String oldpass = oldpassword.getText().toString();
+                String newpass = newpassword.getText().toString();
+                String confirmpass = confirmpassword.getText().toString();
+                oldpassword.setText("");
+                newpassword.setText("");
+                confirmpassword.setText("");
+                if(currentUser.size() > 0 && oldpass.equals(currentUser.get(0).getPassword())){
+                    if (newpass.equals(confirmpass)){
+                        wheatyDataBase.userDAO().changePassword(currentUser.get(0).getEmail(), newpass);
+                    }else{
+                        //cartel error
+                    }
+                }else{
+                    //cartel error
+                }
+            }
+        });
 
         // Inflate the layout for this fragment
         return root;

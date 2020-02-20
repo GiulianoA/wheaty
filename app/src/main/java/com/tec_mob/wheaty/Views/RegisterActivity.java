@@ -55,8 +55,8 @@ public class RegisterActivity extends AppCompatActivity {
                     user.setLastName(userLastName);
                     user.setEmail(userEmail);
                     user.setPassword(userPassword);
-                    user.setHora(8);
-                    user.setMinutos(0);
+                    user.setHora("8");
+                    user.setMinutos("0");
                     user.setNotificaciones(false);
                     user.setUnidades(true);
                     user.setRememberMe(false);

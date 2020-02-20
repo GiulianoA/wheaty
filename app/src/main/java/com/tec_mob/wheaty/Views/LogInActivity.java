@@ -48,6 +48,19 @@ public class LogInActivity extends AppCompatActivity {
 
         signIn();
         register();
+        recoverPass();
+    }
+
+    public void recoverPass(){
+        Button fp = findViewById(R.id.forgot_password);
+
+        fp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LogInActivity.this, RecoverPasswordActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void signIn(){

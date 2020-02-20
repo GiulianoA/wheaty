@@ -23,9 +23,9 @@ public class User {
     @ColumnInfo(name = "notificaciones")
     private Boolean notificaciones;
     @ColumnInfo(name = "hora")
-    private int hora;
+    private String hora;
     @ColumnInfo(name = "minutos")
-    private int minutos;
+    private String minutos;
     @ColumnInfo(name = "remember_me")
     private Boolean rememberMe;
     @ColumnInfo(name = "current_user")
@@ -79,19 +79,19 @@ public class User {
         this.notificaciones = notificaciones;
     }
 
-    public int getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(int hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 
-    public int getMinutos() {
+    public String getMinutos() {
         return minutos;
     }
 
-    public void setMinutos(int minutos) {
+    public void setMinutos(String minutos) {
         this.minutos = minutos;
     }
 

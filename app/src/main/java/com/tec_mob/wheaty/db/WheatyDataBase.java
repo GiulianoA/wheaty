@@ -10,8 +10,9 @@ import com.tec_mob.wheaty.db.DAO.UserDAO;
 import com.tec_mob.wheaty.db.DAO.WeatherDAO;
 import com.tec_mob.wheaty.model.Forecast;
 import com.tec_mob.wheaty.model.User;
+import com.tec_mob.wheaty.model.Weather;
 
-@Database(entities = {User.class, Forecast.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class, Forecast.class, Weather.class}, version = 1, exportSchema = false)
 public abstract class WheatyDataBase extends RoomDatabase {
 
     private static volatile WheatyDataBase INSTANCE;
@@ -29,6 +30,6 @@ public abstract class WheatyDataBase extends RoomDatabase {
     }
 
     public abstract UserDAO userDAO();
-    public abstract ForecastDAO forecastDTO();
+    public abstract ForecastDAO forecastDAO();
     public abstract WeatherDAO weatherDAO();
 }

@@ -29,6 +29,9 @@
             android:name=".Views.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".Views.RecoverPasswordActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Views.LogInActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

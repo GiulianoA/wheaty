@@ -52,7 +52,7 @@ public class ForecastFrag extends Fragment {
         }
 
         // read BD for data
-        List<Forecast> forecastList = wheatyDataBase.forecastDTO().getForecast();
+        List<Forecast> forecastList = wheatyDataBase.forecastDAO().getForecast();
         ForecastAdapter forecastAdapter = new ForecastAdapter(forecastList, unit);
         recyclerView.setAdapter(forecastAdapter);
 
@@ -104,14 +104,14 @@ public class ForecastFrag extends Fragment {
         @Override
         protected void onPostExecute(ForecastDTO forecastDTO) {
             // save forecastDTO to DB
-            wheatyDataBase.forecastDTO().deleteAll();
+            wheatyDataBase.forecastDAO().deleteAll();
             for(ForecastDTO.ForecastList fc : forecastDTO.list){
                 Forecast forecast = new Forecast(fc.main.temp, fc.main.tempMin, fc.main.tempMax, fc.weather.get(0).icon, fc.dt);
-                wheatyDataBase.forecastDTO().addForecast(forecast);
+                wheatyDataBase.forecastDAO().addForecast(forecast);
             }
 
             // read BD for data
-            List<Forecast> forecastList = wheatyDataBase.forecastDTO().getForecast();
+            List<Forecast> forecastList = wheatyDataBase.forecastDAO().getForecast();
             ForecastAdapter forecastAdapter = new ForecastAdapter(forecastList, unit);
             recyclerView.setAdapter(forecastAdapter);
         }

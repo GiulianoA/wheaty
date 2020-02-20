@@ -29,6 +29,9 @@ import android.widget.TextView;
 import com.tec_mob.wheaty.GPS;
 import com.tec_mob.wheaty.R;
 import com.tec_mob.wheaty.db.WheatyDataBase;
+import com.tec_mob.wheaty.model.User;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,11 +48,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void FragTemp(){
         //ragmentManager = getSupportFragmentManager();
         fragmentManager.popBackStack();
-        TempFrag tempFrag = (TempFrag)fragmentManager.findFragmentByTag("tempFrag");
+        WeatherFrag weatherFrag = (WeatherFrag)fragmentManager.findFragmentByTag("weatherFrag");
         ForecastFrag forecastFrag = (ForecastFrag)fragmentManager.findFragmentByTag("forecastFrag");
 
 
-        if(tempFrag == null || !tempFrag.isVisible()) {
+        if(weatherFrag == null || !weatherFrag.isVisible()) {
 
             if(forecastFrag != null && !forecastFrag.isHidden()){
                 fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -59,11 +62,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-            if(tempFrag == null)
-                tempFrag = new TempFrag();
+            if(weatherFrag == null)
+                weatherFrag = new WeatherFrag();
             else
-                fragmentTransaction.show(tempFrag);
-            fragmentTransaction.replace(R.id.contenedor, tempFrag,"tempFrag");
+                fragmentTransaction.show(weatherFrag);
+            fragmentTransaction.replace(R.id.contenedor, weatherFrag,"weatherFrag");
 
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
@@ -76,13 +79,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //fragmentManager = getSupportFragmentManager();
         fragmentManager.popBackStack();
         ForecastFrag forecastFrag = (ForecastFrag)fragmentManager.findFragmentByTag("forecastFrag");
-        TempFrag tempFrag = (TempFrag)fragmentManager.findFragmentByTag("tempFrag");
+        WeatherFrag weatherFrag = (WeatherFrag)fragmentManager.findFragmentByTag("weatherFrag");
 
         if(forecastFrag == null || !forecastFrag.isVisible()){
 
-            if(tempFrag != null && !tempFrag.isHidden()){
+            if(weatherFrag != null && !weatherFrag.isHidden()){
                 fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.hide(tempFrag);
+                fragmentTransaction.hide(weatherFrag);
                 fragmentTransaction.commit();
                 fragmentManager.popBackStack();
             }
