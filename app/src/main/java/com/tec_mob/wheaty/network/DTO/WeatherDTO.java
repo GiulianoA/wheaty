@@ -1,4 +1,4 @@
-package com.tec_mob.wheaty.Network;
+package com.tec_mob.wheaty.network.DTO;
 
 import com.google.gson.annotations.SerializedName;
 

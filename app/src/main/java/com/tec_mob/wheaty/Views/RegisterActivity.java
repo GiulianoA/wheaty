@@ -1,9 +1,8 @@
-package com.tec_mob.wheaty;
+package com.tec_mob.wheaty.Views;
 
 
 
 import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.tec_mob.wheaty.DataBase.User;
-import com.tec_mob.wheaty.DataBase.WheatyDataBase;
+import com.tec_mob.wheaty.R;
+import com.tec_mob.wheaty.model.User;
+import com.tec_mob.wheaty.db.WheatyDataBase;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -55,6 +55,11 @@ public class RegisterActivity extends AppCompatActivity {
                     user.setLastName(userLastName);
                     user.setEmail(userEmail);
                     user.setPassword(userPassword);
+                    user.setHora(8);
+                    user.setMinutos(0);
+                    user.setNotificaciones(false);
+                    user.setUnidades(true);
+                    user.setRememberMe(false);
 
                     wheatyDataBase.userDAO().addUser(user);
 

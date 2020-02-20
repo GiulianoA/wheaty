@@ -1,108 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TempFrag"
     android:background="@drawable/gradient_background">
 
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="310dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="40dp">
 
-        <ImageView
-            android:id="@+id/password_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/password_icon"
-            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="290dp"
-            android:layout_height="50dp"
-            android:background="@drawable/round_edit_text"
-            android:hint="@string/register_password"
-            android:inputType="textPassword"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginLeft="20dp"
-            android:nextFocusDown="@id/confirm_password"/>
-    </LinearLayout>
+            <Switch
+                android:id="@+id/unidades"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unidad de medida F / C  "
+                android:textSize="20dp"
+                android:textStyle="bold"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="390dp"
-        android:orientation="horizontal">
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="100dp"
+                android:layout_height="1dp"
+                android:background="@android:color/black"/>
 
-        <ImageView
-            android:id="@+id/new_password_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/password_icon"
-            />
+            <Switch
+                android:id="@+id/notificaciones"
+                android:layout_marginTop="120dp"
+                android:layout_marginLeft="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notificaciones                  "
+                android:textSize="20dp"
+                android:textStyle="bold"/>
 
-        <EditText
-            android:id="@+id/new_password"
-            android:layout_width="290dp"
-            android:layout_height="50dp"
-            android:background="@drawable/round_edit_text"
-            android:hint="New Password"
-            android:inputType="textPassword"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginLeft="20dp"
-            android:nextFocusDown="@id/confirm_password"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="470dp"
-        android:orientation="horizontal">
+            <EditText
+                android:id="@+id/hora"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="120dp"
+                android:hint="Choose the time"
+                android:focusableInTouchMode="false"/>
 
-        <ImageView
-            android:id="@+id/confirm_password_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/password_icon"
-            />
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="200dp"
+                android:layout_height="1dp"
+                android:background="@android:color/black"/>
 
-        <EditText
-            android:id="@+id/confirm_password"
-            android:layout_width="290dp"
-            android:layout_height="50dp"
-            android:background="@drawable/round_edit_text"
-            android:hint="@string/register_password_confirm"
-            android:inputType="textPassword"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginLeft="20dp"
-            android:nextFocusDown="@id/register"/>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="310dp"
+                android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/register"
-        android:layout_width="350dp"
-        android:layout_height="62dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="550dp"
-        android:layout_marginBottom="15dp"
-        android:text="Confirm"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:background="@drawable/round_button" />
+                <ImageView
+                    android:id="@+id/password_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/password_icon"
+                    />
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="290dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/round_edit_text"
+                    android:hint="@string/register_password"
+                    android:inputType="textPassword"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:nextFocusDown="@id/confirm_password"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="390dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/new_password_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/password_icon"
+                    />
+
+                <EditText
+                    android:id="@+id/new_password"
+                    android:layout_width="290dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/round_edit_text"
+                    android:hint="New Password"
+                    android:inputType="textPassword"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:nextFocusDown="@id/confirm_password"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="470dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/confirm_password_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/password_icon"
+                    />
+
+                <EditText
+                    android:id="@+id/confirm_password"
+                    android:layout_width="290dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/round_edit_text"
+                    android:hint="@string/register_password_confirm"
+                    android:inputType="textPassword"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:nextFocusDown="@id/register"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/register"
+                android:layout_width="350dp"
+                android:layout_height="62dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="550dp"
+                android:layout_marginBottom="15dp"
+                android:text="Confirm"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:background="@drawable/round_button" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
 </FrameLayout>

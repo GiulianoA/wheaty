@@ -1,6 +1,7 @@
-package com.tec_mob.wheaty;
+package com.tec_mob.wheaty.Views;
 
 import android.Manifest;
+import android.arch.persistence.room.Room;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -25,10 +26,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.tec_mob.wheaty.GPS;
+import com.tec_mob.wheaty.R;
+import com.tec_mob.wheaty.db.WheatyDataBase;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     MenuView.ItemView btnFragTemp, btnFragForec;
+
+    public static WheatyDataBase wheatyDataBase;
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
@@ -114,11 +121,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void logout(){
+
+        wheatyDataBase = Room.databaseBuilder(getApplicationContext(), WheatyDataBase.class, "userdb").allowMainThreadQueries().build();
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.dialog_message_login)
                 .setPositiveButton(R.string.dialog_positive_login, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        wheatyDataBase.userDAO().logOut();
                         Intent i = new Intent(MainActivity.this, LogInActivity.class);
                         startActivity(i);
                         finish();
@@ -149,18 +160,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     latT.setText(String.valueOf(lat));
 
                     //Toast.makeText(getApplicationContext(),"LAT: "+lat+"\n LON: "+lon, Toast.LENGTH_LONG).show();
-                }
-                /*AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage(R.string.dialog_message_gps)
-                        .setPositiveButton(R.string.dialog_positive_gps, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                }/* else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setMessage(R.string.dialog_message_gps)
+                            .setPositiveButton(R.string.dialog_positive_gps, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
-                            }
-                        })
-                        .setTitle("GPS")
-                        .create();
-                builder.show();*/
+                                }
+                            })
+                            .setTitle("GPS")
+                            .create();
+                    builder.show();
+                }*/
             }
         });
     }

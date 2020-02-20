@@ -1,11 +1,17 @@
-package com.tec_mob.wheaty.DataBase;
+package com.tec_mob.wheaty.db;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-@Database(entities = {User.class}, version = 1)
+import com.tec_mob.wheaty.db.DAO.ForecastDAO;
+import com.tec_mob.wheaty.db.DAO.UserDAO;
+import com.tec_mob.wheaty.db.DAO.WeatherDAO;
+import com.tec_mob.wheaty.model.Forecast;
+import com.tec_mob.wheaty.model.User;
+
+@Database(entities = {User.class, Forecast.class}, version = 1, exportSchema = false)
 public abstract class WheatyDataBase extends RoomDatabase {
 
     private static volatile WheatyDataBase INSTANCE;
@@ -23,4 +29,6 @@ public abstract class WheatyDataBase extends RoomDatabase {
     }
 
     public abstract UserDAO userDAO();
+    public abstract ForecastDAO forecastDTO();
+    public abstract WeatherDAO weatherDAO();
 }

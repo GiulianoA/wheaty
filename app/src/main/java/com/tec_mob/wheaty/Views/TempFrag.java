@@ -1,4 +1,4 @@
-package com.tec_mob.wheaty;
+package com.tec_mob.wheaty.Views;
 
 import android.location.Location;
 import android.os.Bundle;
@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
-import com.tec_mob.wheaty.Network.WeatherAsyncTask;
+import com.tec_mob.wheaty.GPS;
+import com.tec_mob.wheaty.R;
+import com.tec_mob.wheaty.network.WeatherAsyncTask;
 import java.util.LinkedHashMap;
 
 
