@@ -33,7 +33,7 @@ import static android.content.Context.ALARM_SERVICE;
 public class SettingsFrag extends Fragment {
 
     public static WheatyDataBase wheatyDataBase;
-    EditText chooseTimee;
+    TextView email;
     Switch unidadesSwitch, notificacionesSwitch;
 
     EditText chooseTime;
@@ -128,6 +128,10 @@ public class SettingsFrag extends Fragment {
             }
         });
 
+        email = root.findViewById(R.id.email_nav);
+        email.setText(currentUser.get(0).getEmail());
+
+
         final EditText oldpassword = root.findViewById(R.id.password);
         final EditText newpassword = root.findViewById(R.id.new_password);
         final EditText confirmpassword = root.findViewById(R.id.confirm_password);
@@ -145,11 +149,12 @@ public class SettingsFrag extends Fragment {
                 if(currentUser.size() > 0 && oldpass.equals(currentUser.get(0).getPassword())){
                     if (newpass.equals(confirmpass)){
                         wheatyDataBase.userDAO().changePassword(currentUser.get(0).getEmail(), newpass);
+                        Toast.makeText(getContext(), "Passowrd changed Successfully", Toast.LENGTH_SHORT).show();
                     }else{
-                        //cartel error
+                        Toast.makeText(getContext(), "Incorrect Passwords", Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    //cartel error
+                    Toast.makeText(getContext(), "Incorrect Password", Toast.LENGTH_LONG).show();
                 }
             }
         });

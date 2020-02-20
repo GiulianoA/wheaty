@@ -3,6 +3,7 @@ package com.tec_mob.wheaty.Views;
 
 
 import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -49,32 +50,55 @@ public class RegisterActivity extends AppCompatActivity {
                 String userPassword = password.getText().toString();
                 String userConfirmaPassword = confirmPassword.getText().toString();
 
-                if(userPassword.equals(userConfirmaPassword)){
-                    User user = new User();
-                    user.setName(userName);
-                    user.setLastName(userLastName);
-                    user.setEmail(userEmail);
-                    user.setPassword(userPassword);
-                    user.setHora("8");
-                    user.setMinutos("0");
-                    user.setNotificaciones(false);
-                    user.setUnidades(true);
-                    user.setRememberMe(false);
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-                    wheatyDataBase.userDAO().addUser(user);
+                if(userName.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Complete name field", Toast.LENGTH_SHORT).show();
+                }else if(userLastName.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Complete last name field", Toast.LENGTH_SHORT).show();
+                }else if(userEmail.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Complete email field", Toast.LENGTH_SHORT).show();
+                }else if(userEmail.trim().matches(emailPattern)){
+                    if(userPassword.isEmpty() || userConfirmaPassword.isEmpty()){
+                        Toast.makeText(getApplicationContext(), "Complete password field", Toast.LENGTH_SHORT).show();
+                    }else{
+                        if(userPassword.equals(userConfirmaPassword)){
+                            User user = new User();
+                            user.setName(userName);
+                            user.setLastName(userLastName);
+                            user.setEmail(userEmail);
+                            user.setPassword(userPassword);
+                            user.setHora("08");
+                            user.setMinutos("00");
+                            user.setNotificaciones(false);
+                            user.setUnidades(true);
+                            user.setRememberMe(false);
 
-                    Toast.makeText(getApplicationContext(), "Successful register", Toast.LENGTH_SHORT).show();
+                            wheatyDataBase.userDAO().addUser(user);
 
-                    name.setText("");
-                    lastName.setText("");
-                    email.setText("");
-                    password.setText("");
-                    confirmPassword.setText("");
+                            Toast.makeText(getApplicationContext(), "Successful register", Toast.LENGTH_SHORT).show();
+
+                            name.setText("");
+                            lastName.setText("");
+                            email.setText("");
+                            password.setText("");
+                            confirmPassword.setText("");
+
+                            Intent i = new Intent(RegisterActivity.this, LogInActivity.class);
+                            startActivity(i);
+
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Incorrects Passwords", Toast.LENGTH_SHORT).show();
+                            password.setText("");
+                            confirmPassword.setText("");
+                        }
+                    }
+
                 }else{
-                    Toast.makeText(getApplicationContext(), "Incorrects Passwords", Toast.LENGTH_SHORT).show();
-                    password.setText("");
-                    confirmPassword.setText("");
+                    Toast.makeText(getApplicationContext(), "Email is not valid", Toast.LENGTH_SHORT).show();
                 }
+
+
 
 
 

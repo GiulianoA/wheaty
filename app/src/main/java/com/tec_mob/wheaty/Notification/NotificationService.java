@@ -12,6 +12,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -21,6 +24,7 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 
+import com.tec_mob.wheaty.GPS;
 import com.tec_mob.wheaty.R;
 import com.tec_mob.wheaty.Views.MainActivity;
 import com.tec_mob.wheaty.db.WheatyDataBase;
@@ -29,8 +33,10 @@ import com.tec_mob.wheaty.model.Weather;
 import com.tec_mob.wheaty.network.DTO.WeatherDTO;
 import com.tec_mob.wheaty.network.WeatherService;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class NotificationService extends IntentService {
 
@@ -82,7 +88,7 @@ public class NotificationService extends IntentService {
             wheatyDataBase.weatherDAO().addWeather(weather);
         }else {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage("Error de conexion")
+            builder.setMessage("Couldn't establish connection")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -95,10 +101,34 @@ public class NotificationService extends IntentService {
 
         String message = "";
 
+
         // read BD for data
         List<Weather> weatherList = wheatyDataBase.weatherDAO().getWeather();
         if(weatherList.size() > 0) {
-            message = String.format("La temperatura para hoy es de %s°%s", weatherList.get(0).getTemp(), unit?"C":"F");
+
+            GPS g = new GPS(getApplicationContext());
+            Location l = g.getLocation();
+            if(l != null) {
+                double lat = l.getLatitude();
+                double lon = l.getLongitude();
+
+                Geocoder gcd = new Geocoder(getApplicationContext(), Locale.getDefault());
+                List<Address> addresses = null;
+                try {
+                    addresses = gcd.getFromLocation(lat, lon, 1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (addresses != null && addresses.size() > 0) {
+                    String locality = addresses.get(0).getLocality();
+                    String country = addresses.get(0).getCountryName();
+
+                    message = String.format("La temperatura para hoy en "+ locality+" es de %s°%s", weatherList.get(0).getTemp(), unit?"C":"F");
+                }
+
+            }
+
+            //message = String.format("La temperatura para hoy en "+ locality+", "+country +"es de %s°%s", weatherList.get(0).getTemp(), unit?"C":"F");
         }
 
         if(!message.isEmpty() && notifications) {
@@ -130,7 +160,8 @@ public class NotificationService extends IntentService {
                         .setDefaults(Notification.DEFAULT_ALL)
                         .setAutoCancel(true)
                         .setSound(soundUri)
-
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(message))
                         .setContentIntent(pendingIntent)
                         .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
                 Notification notification = builder.build();

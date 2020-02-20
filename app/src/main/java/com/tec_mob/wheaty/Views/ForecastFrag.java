@@ -60,7 +60,7 @@ public class ForecastFrag extends Fragment {
             executeAsyncTask();
         }else {
             AlertDialog.Builder builder = new AlertDialog.Builder(container.getContext());
-            builder.setMessage("Error de conexion")
+            builder.setMessage("Couldn't establish connection")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

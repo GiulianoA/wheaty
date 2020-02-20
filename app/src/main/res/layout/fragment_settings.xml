@@ -17,10 +17,10 @@
             <Switch
                 android:id="@+id/unidades"
                 android:layout_marginTop="50dp"
-                android:layout_marginLeft="80dp"
+                android:layout_marginLeft="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Unidad de medida F / C  "
+                android:text="Unit measure °F / °C                    "
                 android:textSize="20dp"
                 android:textStyle="bold"/>
 
@@ -33,20 +33,30 @@
             <Switch
                 android:id="@+id/notificaciones"
                 android:layout_marginTop="120dp"
-                android:layout_marginLeft="80dp"
+                android:layout_marginLeft="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Notificaciones                  "
+                android:text="Notifications                                  "
                 android:textSize="20dp"
                 android:textStyle="bold"/>
 
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="160dp"
+                android:text="Set Notification time:"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
             <EditText
                 android:id="@+id/hora"
-                android:layout_width="150dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="150dp"
-                android:layout_marginLeft="120dp"
-                android:hint="Choose the time"
+                android:layout_marginLeft="310dp"
+                android:hint="Time"
                 android:focusableInTouchMode="false"/>
 
             <View
@@ -55,17 +65,51 @@
                 android:layout_height="1dp"
                 android:background="@android:color/black"/>
 
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="220dp"
+                android:text="Account:"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/email_nav"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="224dp"
+                android:text="-"
+                android:textColor="#000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="270dp"
+                android:text="Change Password:"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="310dp"
                 android:orientation="horizontal">
 
+
                 <ImageView
                     android:id="@+id/password_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="35dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/password_icon"
                     />
@@ -77,6 +121,7 @@
                     android:background="@drawable/round_edit_text"
                     android:hint="@string/register_password"
                     android:inputType="textPassword"
+                    android:layout_marginTop="30dp"
                     android:textSize="16dp"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -94,7 +139,7 @@
                     android:id="@+id/new_password_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="35dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/password_icon"
                     />
@@ -106,6 +151,7 @@
                     android:background="@drawable/round_edit_text"
                     android:hint="New Password"
                     android:inputType="textPassword"
+                    android:layout_marginTop="30dp"
                     android:textSize="16dp"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -122,7 +168,7 @@
                     android:id="@+id/confirm_password_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="35dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/password_icon"
                     />
@@ -135,6 +181,7 @@
                     android:hint="@string/register_password_confirm"
                     android:inputType="textPassword"
                     android:textSize="16dp"
+                    android:layout_marginTop="30dp"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_marginLeft="20dp"
@@ -147,7 +194,7 @@
                 android:layout_height="62dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="550dp"
+                android:layout_marginTop="580dp"
                 android:layout_marginBottom="15dp"
                 android:text="Confirm"
                 android:textSize="20dp"

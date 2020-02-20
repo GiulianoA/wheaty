@@ -68,6 +68,26 @@
             android:text="-"
             android:textColor="#FFF"/>
 
+        <TextView
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="550dp"
+            android:layout_marginLeft="30dp"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:text="City:"
+            android:textColor="#FFF"/>
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="550dp"
+            android:layout_marginLeft="120dp"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:text="-"
+            android:textColor="#FFF"/>
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/gps"
             android:layout_width="wrap_content"

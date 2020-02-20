@@ -80,9 +80,11 @@ public class LogInActivity extends AppCompatActivity {
                 String userPassword = password.getText().toString();
                 Boolean rememberMe = remember.isChecked();
 
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
                 if(userEmail.isEmpty() && userPassword.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_LONG).show();
-                }else {
+                }else if(userEmail.trim().matches(emailPattern)){
                     try{
                         List<User> user = wheatyDataBase.userDAO().getUsers(userEmail);
 
@@ -102,6 +104,8 @@ public class LogInActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_LONG).show();
                     }
 
+                }else{
+                    Toast.makeText(getApplicationContext(), "Email is not valid", Toast.LENGTH_SHORT).show();
                 }
 
 

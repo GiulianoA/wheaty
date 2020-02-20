@@ -30,21 +30,12 @@
         android:layout_width="260dp"
         android:layout_height="80dp"
         android:layout_marginTop="150dp"
-        android:layout_marginLeft="200dp"
+        android:layout_marginLeft="220dp"
         android:textSize="45dp"
         android:textStyle="bold"
         android:text="-"
         android:textColor="#FFF"/>
 
-    <TextView
-        android:layout_width="260dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="320dp"
-        android:textSize="45dp"
-        android:textStyle="bold"
-        android:text="° C"
-        android:textColor="#FFF"/>
 
     <TextView
         android:id="@+id/tempMax"
@@ -72,7 +63,7 @@
         android:layout_width="260dp"
         android:layout_height="80dp"
         android:layout_marginTop="290dp"
-        android:layout_marginLeft="240dp"
+        android:layout_marginLeft="220dp"
         android:textSize="25dp"
         android:textStyle="bold"
         android:text="-"
@@ -98,11 +89,11 @@
 
     <TextView
         android:id="@+id/city"
-        android:layout_width="260dp"
+        android:layout_width="300dp"
         android:layout_height="80dp"
         android:layout_marginTop="350dp"
         android:layout_marginLeft="80dp"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textStyle="bold"
         android:text="-"
         android:textColor="#FFF"/>
@@ -110,8 +101,8 @@
     <TextView
         android:layout_width="260dp"
         android:layout_height="80dp"
-        android:layout_marginTop="430dp"
-        android:layout_marginLeft="115dp"
+        android:layout_marginTop="410dp"
+        android:layout_marginLeft="100dp"
         android:textSize="20dp"
         android:textStyle="bold"
         android:text="@string/lastUpdate"
@@ -121,8 +112,8 @@
         android:id="@+id/date"
         android:layout_width="260dp"
         android:layout_height="80dp"
-        android:layout_marginTop="430dp"
-        android:layout_marginLeft="260dp"
+        android:layout_marginTop="410dp"
+        android:layout_marginLeft="230dp"
         android:textSize="20dp"
         android:textStyle="bold"
         android:text="-"
@@ -142,7 +133,7 @@
         android:id="@+id/animation_view2"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="490dp"
+        android:layout_marginTop="500dp"
         android:layout_marginLeft="20dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -172,15 +163,6 @@
         android:text="-"
         android:textColor="#FFF"/>
 
-    <TextView
-        android:layout_width="260dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="530dp"
-        android:layout_marginLeft="260dp"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:text="km/h"
-        android:textColor="#FFF"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

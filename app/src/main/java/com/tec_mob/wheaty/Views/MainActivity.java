@@ -2,10 +2,13 @@ package com.tec_mob.wheaty.Views;
 
 import android.Manifest;
 import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,7 +34,9 @@ import com.tec_mob.wheaty.R;
 import com.tec_mob.wheaty.db.WheatyDataBase;
 import com.tec_mob.wheaty.model.User;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -152,30 +157,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 TextView lonT = findViewById(R.id.lon);
                 TextView latT = findViewById(R.id.lat);
+                TextView city = findViewById(R.id.city);
 
                 GPS g = new GPS(getApplicationContext());
                 Location l = g.getLocation();
-                if(l != null){
+                if(l != null) {
                     double lat = l.getLatitude();
                     double lon = l.getLongitude();
 
                     lonT.setText(String.valueOf(lon));
                     latT.setText(String.valueOf(lat));
 
-                    //Toast.makeText(getApplicationContext(),"LAT: "+lat+"\n LON: "+lon, Toast.LENGTH_LONG).show();
-                }/* else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setMessage(R.string.dialog_message_gps)
-                            .setPositiveButton(R.string.dialog_positive_gps, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                    Geocoder gcd = new Geocoder(getApplicationContext(), Locale.getDefault());
+                    List<Address> addresses = null;
+                    try {
+                        addresses = gcd.getFromLocation(lat, lon, 1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    if (addresses != null && addresses.size() > 0) {
+                        String locality = addresses.get(0).getLocality();
+                        String country = addresses.get(0).getCountryName();
+                        city.setText(locality+", "+country);
+                    }
 
-                                }
-                            })
-                            .setTitle("GPS")
-                            .create();
-                    builder.show();
-                }*/
+                }
+
+
             }
         });
     }
@@ -228,6 +236,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
        });
 
         GPSButton();
+
+
 
     }
 

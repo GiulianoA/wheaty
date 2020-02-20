@@ -1,6 +1,7 @@
 package com.tec_mob.wheaty.Views;
 
 import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -8,10 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.tec_mob.wheaty.R;
 import com.tec_mob.wheaty.db.WheatyDataBase;
 import com.tec_mob.wheaty.network.Smtp;
+
+import java.util.concurrent.TimeUnit;
 
 public class RecoverPasswordActivity extends AppCompatActivity {
 
@@ -36,14 +40,25 @@ public class RecoverPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String mail = m.getText().toString();
-                m.setText("");
-                if(wheatyDataBase.userDAO().getUsers(mail).size() > 0){
-                    String newPassword = randomAlphaNumeric(8);
-                    wheatyDataBase.userDAO().changePassword(mail, newPassword);
-                    Smtp.resetPassword(mail, newPassword);
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+                if(mail.trim().matches(emailPattern)){
+                    m.setText("");
+                    if(wheatyDataBase.userDAO().getUsers(mail).size() > 0){
+                        String newPassword = randomAlphaNumeric(8);
+                        wheatyDataBase.userDAO().changePassword(mail, newPassword);
+                        Smtp.resetPassword(mail, newPassword);
+                        Toast.makeText(getApplicationContext(), "Email sent, check inbox!", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(RecoverPasswordActivity.this, LogInActivity.class);
+                        startActivity(i);
+
+                    }
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Email is not valid", Toast.LENGTH_SHORT).show();
                 }
-                // Mostrar toast
-                // Mensaje: verifique su casilla de correo
+
+
             }
         });
 

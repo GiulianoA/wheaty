@@ -81,7 +81,7 @@ public class WeatherFrag extends Fragment {
             executeAsyncTask();
         }else {
             AlertDialog.Builder builder = new AlertDialog.Builder(container.getContext());
-            builder.setMessage("Error de conexion")
+            builder.setMessage("Couldn't establish connection")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -166,7 +166,7 @@ public class WeatherFrag extends Fragment {
         tempMin.setText(String.format("%s°%s", weather.getTempMin(), unit?"C":"F"));
         city.setText(weather.getCity());
         status.setText(weather.getStatus());
-        wind.setText(String.format("%s°%s", weather.getTempMin(), unit?"k/m":"p/s"));
+        wind.setText(String.format("%s°%s", weather.wind, unit?"k/m":"p/s"));
         animationView.setAnimation(weather.icon + ".json");
         Date weatherDate = new Date(weather.getDt());
         DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
